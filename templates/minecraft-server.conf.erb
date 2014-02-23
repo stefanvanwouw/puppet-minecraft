@@ -1,0 +1,15 @@
+description "Minecraft Server upstart"
+start on runlevel [2345]
+stop on runlevel [06]
+setuid minecraft
+setgid minecraft
+console log
+respawn
+chdir <%= @install_dir %>
+#expect daemon
+
+#env SCREENDIR=<%= @install_dir %>/screens # Make sure this is chmod 700
+
+#exec screen -S minecraft-server -d -m java -server -Xmx<%= @max_memory %> -Xms<%= @min_memory %> -jar minecraft-server.jar
+exec java -server -Xmx<%= @max_memory %> -Xms<%= @min_memory %> -jar minecraft-server.jar
+

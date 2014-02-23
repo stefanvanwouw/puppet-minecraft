@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $# < 2 ]; then
+    echo "Please provide a direct download URL of your Minecraft server jar (can be Bukkit/Vanilla/Spigot/etc.)" 
+    exit 1
+fi
+
+wget -O <%= @install_dir %>/minecraft-server.jar $1
