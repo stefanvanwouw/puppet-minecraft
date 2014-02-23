@@ -1,7 +1,7 @@
 puppet-minecraft
 ================
 
-Puppet module for installing and managing a Vanilla Minecraft Server (1.7.x).
+Puppet module for installing and managing a (Vanilla) Minecraft Server (1.7.x).
 
 
 Example Usage
@@ -13,19 +13,21 @@ If you use the https://github.com/puppetlabs/puppetlabs-firewall module (i.e. if
 
 ```puppet
 node 'hostname' {
-  class {'minecraft':
-      min_memory          => '800M',
-      max_memory          => '2048M',
-      level_name          => 'World',
-      difficulty          => 3,
-      level_seed          => '-840222844129379185',
-      op_permission_level => 4,
-      server_name         => 'Minecraft Server',
-      motd                => 'Minecraft Server MOTD',
-      white_list          => true,
-      max_players         => 30,
-      enable_rcon         => true,
-      rcon_password       => 'abcdefgh876543210',
-  }
+    class {'minecraft':
+        jar_url             => 'https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar',
+        min_memory          => '800M',
+        max_memory          => '900M',
+        level_name          => 'Berrybridge',
+        difficulty          => 3,
+        level_seed          => '-840222844129379185',
+        op_permission_level => 4,
+        server_name         => 'The Experiment',
+        motd                => '&1Experiments',
+        white_list          => true,
+        max_players         => 30,
+        enable_rcon         => true,
+        rcon_password       => 'abcdefgh876543210',
+        open_rcon_port      => false,
+    }
 }
 ```
