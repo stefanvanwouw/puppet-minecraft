@@ -76,15 +76,18 @@ class minecraft (
         require => File[$install_dir],
     }
 
-    class {'minecraft::firewall':
-        server_port => $server_port,
-        enable_query => $enable_query,
-        enable_rcon => $enable_rcon,
-        query_port  => $query_port,
-        rcon_port   => $rcon_port,
-        open_rcon_port => $open_rcon_port,
-        open_server_port => $open_server_port,
-        open_query_port => $open_query_port,
+    if defined(Class['firewall']) {
+        # Only use firewall rules if the puppet-firewall module is active.
+        class {'minecraft::firewall':
+            server_port => $server_port,
+            enable_query => $enable_query,
+            enable_rcon => $enable_rcon,
+            query_port  => $query_port,
+            rcon_port   => $rcon_port,
+            open_rcon_port => $open_rcon_port,
+            open_server_port => $open_server_port,
+            open_query_port => $open_query_port,
+        }
     }
 
     # The service that runs the server.
